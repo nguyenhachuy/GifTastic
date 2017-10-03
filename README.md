@@ -1,2 +1,2 @@
-# TriviaGame
+# GifTastic
 AJAX practice
