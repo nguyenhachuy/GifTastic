@@ -45,7 +45,7 @@ function ajaxCall() {
 		},
 	}).done(function(response) {
 		console.log(response);
-		$(".content").empty();
+		$(".gifs").empty();
 		//Process the response better
 		response = response.data;
 		response.forEach((value) => {
@@ -55,7 +55,7 @@ function ajaxCall() {
 			gif.attr("src", url);
 			var title = $("<h1>").text(`Rating: ${value.rating}`);
 			div.append(gif).prepend(title);
-			$(".content").append(div);
+			$(".gifs").append(div);
 
 		});
 	});
