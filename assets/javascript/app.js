@@ -36,8 +36,15 @@ function ajaxCall() {
 		},
 	}).done(function(response) {
 		console.log(response);
-		var gif = $("<img>");
-		gif.attr("src", response.data[0].images.fixed_height.url);
-		$(".content").append(gif);
+		$(".content").empty();
+		//Process the response better
+		response = response.data;
+		response.forEach((value) => {
+			var url = value.images.fixed_height.url;
+			var gif = $("<img>");
+			gif.attr("src", url);
+			$(".content").append(gif);
+
+		});
 	});
 }
