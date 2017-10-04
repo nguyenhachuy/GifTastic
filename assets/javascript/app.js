@@ -9,6 +9,7 @@ $(document).ready(function() {
 
 //Dynamic Jquery 
 $(document).on("click", ".button", ajaxCall);
+$(document).on("click", ".gif", animate);
 //Global vars
 var queryURL = "https://api.giphy.com/v1/gifs/search";
 var key = "dc6zaTOxFJmzC";
@@ -50,13 +51,31 @@ function ajaxCall() {
 		response = response.data;
 		response.forEach((value) => {
 			var div = $("<div>");
-			var url = value.images.fixed_height.url;
+			var url_still = value.images.fixed_height_still.url;
+			var url_animate = value.images.fixed_height.url;
 			var gif = $("<img>");
-			gif.attr("src", url);
+			gif.attr("src", url_still).attr("data-state", "still")
+			.attr("data-still", url_still).attr("data-animate", url_animate).addClass("gif");
 			var title = $("<h1>").text(`Rating: ${value.rating}`);
 			div.append(gif).prepend(title);
 			$(".gifs").append(div);
 
 		});
 	});
+}
+
+//Borrowed from what we did in class
+function animate() {
+  var state = $(this).attr("data-state");
+	// If the clicked image's state is still, update its src attribute to what its data-animate value is.
+	// Then, set the image's data-state to animate
+	// Else set src to the data-still value
+	if (state === "still") {
+  	$(this).attr("src", $(this).attr("data-animate"));
+  	$(this).attr("data-state", "animate");
+	} else {
+  	$(this).attr("src", $(this).attr("data-still"));
+  	$(this).attr("data-state", "still");
+	}
+
 }
