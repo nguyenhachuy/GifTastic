@@ -40,10 +40,13 @@ function ajaxCall() {
 		//Process the response better
 		response = response.data;
 		response.forEach((value) => {
+			var div = $("<div>");
 			var url = value.images.fixed_height.url;
 			var gif = $("<img>");
 			gif.attr("src", url);
-			$(".content").append(gif);
+			var title = $("<h1>").text(`Rating: ${value.rating}`);
+			div.append(gif).prepend(title);
+			$(".content").append(div);
 
 		});
 	});
