@@ -38,6 +38,6 @@ function ajaxCall() {
 		console.log(response);
 		var gif = $("<img>");
 		gif.attr("src", response.data[0].images.fixed_height.url);
-		$(".row").append(gif);
+		$(".content").append(gif);
 	});
 }
