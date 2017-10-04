@@ -16,13 +16,22 @@ var key = "dc6zaTOxFJmzC";
 var topics = ["Rick Sanchez", "Morty Smith", "Betty Smith", "Summer Smith"];
 var buttonClass = "btn btn-success button mx-auto";
 function display() {
+	$(".button-row").empty();
 	topics.forEach((value, index, array) => {
 		//Make a button
 		var button = $("<button>").addClass(buttonClass).text(value).data("topic", value);
 		//Append to row
 		$(".button-row").append(button);
 	});
+
 }
+$(".add").on("click", (event) => {
+	event.preventDefault();
+	var value = $(".new-char").val();
+	console.log(value);
+	topics.push(value);
+	display();
+});
 
 function ajaxCall() {
 	var topic = $(this).data("topic");
